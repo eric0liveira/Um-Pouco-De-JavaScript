@@ -19,40 +19,43 @@ Não se preocupe em decorar a sintaxe e os tipos agora. Conforme formos utilizan
 
 ### Number
 
-O tipo `number` representa um valor numérico. Valor esse que pode ser um número real, um número inteiro ou um número expresso em notação exponencial científica.
+O tipo `number` representa um número. Esse número pode ser real, inteiro ou expresso em notação exponencial científica.
 
 Os números que começam com `-` são negativos, e todos os outros positivos, começando com `+` ou não.
 
 Números com notação exponencial têm o expoente indicado após `e` ou `E`. Esses expoentes podem ser positivos ou negativos.
 
+Os números reais tem sua parte fracionária dividia por `.` ao invés do padrão ABTN `,`.
+
 ```js
-var inteiro = 42;
-var inteiro2 = +42.00; //Exibe 42.
-var inteiro3 = 42e-0; //Exibe 42.
-var inteiroNeg = -42;
+var inteiro1 = 42;
+var inteiro2 = +42.00; //Exibe 42
+var inteiro3 = 42e-0; //Exibe 42
+var inteiro4 = -42;
+var inteiro5 = 42.; //Exibe 42
 
-var real = 29.35; //É utilizado . ao invés de , para separar as casas decimais.
-var outroReal = .05; //Exibe 0.05.
-var realNeg = -.8; //Exibe -0.8.
+var real1 = 29.35; 
+var real2 = .05; //Exibe 0.05
+var real3 = -.8; //Exibe -0.8
 
-var notacaoExp = 27e2; //O mesmo que 27 * (10 ^ 2). Resulta em 2700.
-var notacaoExpPos = 27E+2; //Igual ao anterior.
-var notacaoExpPos2 = 0.27E+4; //Igual ao anterior.
-var notacaoExpNeg = 27e-2; //O mesmo que 27 * (10 ^ -2). Resulta em 0.27.
-var NotacaoExpNeg2 = -27e-2 //Exibe -0.27.
+var notacaoExp1 = 27e2; //O mesmo que 27 * (10 ^ 2). Exibe 2700
+var notacaoExp2 = 27E+2; //Idem.
+var notacaoExp3 = 0.27E+4; //Idem.
+var notacaoExp4 = 27e-2; //O mesmo que 27 * (10 ^ -2). Exibe 0.27
+var NotacaoExp5 = -27e-2 //Exibe -0.27
 ```
 
 #### Precisão
 
-O tipo `number` segue o padrão IEEE 754 que determina representações de números binários de ponto flutuante de precisão dupla com 64 bits. No entanto mesmo os números inteiros são armazenados dessa forma.
+O tipo `number` segue o padrão IEEE 754 que determina representações de números binários de ponto flutuante de precisão dupla (64 bits). No entanto mesmo os números inteiros são armazenados dessa forma.
 
 Dos 64 bits: 1 bit para o sinal (positivo ou negativo), 11 bits para o expoente e 52 bits são utilizados para a mantissa.
 
-**Nota:** Foge do escopo do livro explicar como funciona a conversão de números decimais para números binários normalizados pelo padrão IEEE 754. Contudo, esteja ciente que é um cálculo complexo e que pouco agrega ao conhecimento de uso de tipos `number`.
+**Nota:** Foge do escopo do livro explicar como funciona o padrão IEEE 754 e como valores `number` são [convertidos](http://www.h-schmidt.net/FloatConverter/IEEE754.html) e armazenados. Contudo, esteja ciente que é um cálculo complexo e que não prejudica o aprendizado de JS.
 
-Simplificando a definição: podemos utilizar valores inteiros entre -9007199254740991 e 9007199254740991, intervalo de mais de 18 quadrilhões, ou simplificando ainda mais, podemos utilizar números inteiros de até 15 dígitos de forma segura. 
+Simplificando: podemos utilizar valores inteiros entre -9007199254740991 e 9007199254740991 (mais de 9 quadrilhões) o que nós dá a segurança de utilizar inteiros de até 15 dígitos. 
 
-No capítulo sobre o objeto Number veremos que há quatro propriedades que definem os valores mínimos e máximos para o tipo `number` (`Number.MAX_SAFE_INTEGER`,`Number.MIN_SAFE_INTEGER`, `Number.MAX_VALUE`, `Number.MIN_VALUE`).
+No capítulo sobre o objeto Number você verá que há quatro propriedades que definem os valores mínimos e máximos para o tipo `number` (`Number.MAX_SAFE_INTEGER`,`Number.MIN_SAFE_INTEGER`, `Number.MAX_VALUE`, `Number.MIN_VALUE`).
 
 Caso precise trabalhar com números maiores, pesquise por bibliotecas como [BigInteger.js](https://github.com/peterolson/BigInteger.js) ou [bignumber.js](https://github.com/MikeMcl/bignumber.js).
 
@@ -60,10 +63,10 @@ Caso precise trabalhar com números maiores, pesquise por bibliotecas como [BigI
 
 Há `+0` ou simplmesmente `0` bem como há `-0`. 
 
-O zero negativo não é maior nem menor que o zero *padrão*. 
+O zero negativo não é maior nem menor que o zero *positivo*. 
 
 ```js
-var zeroNeg = 0 / -3 ; //Exibe -0.
+var zero = 0 / -3 ; //Exibe -0.
 
 var eZero = 0 === -0; //Exibe true.
 ```
@@ -72,18 +75,34 @@ var eZero = 0 === -0; //Exibe true.
 
 `+Infinity` e `-Infinity` representam números que ultrapassam os limites de representação. 
 
-Qualquer operação aritmética que contenha `Infinity` resultará em `Infinity`. Exceto elevado à pontencia de `0`, caso que resultará em 1.
+Qualquer operação aritmética que contenha `Infinity` resultará em `Infinity`. Exceto quando elevado à pontencia de `0`, caso em que resultará em 1.
 
 ```js
-var infinito = -Infinity * -2 //Exibe Infinity
+var infinito1 = -Infinity * -2; //Exibe Infinity
 var infinito2 = 42 / 0; //Exibe Infinity
-var infinito3 = Math.pow(Infinity, 0); //Exibe 1
+var infinito3 = Math.pow(Infinity, 0); //Infinity elevado a 0. Exibe 1
 
-var infinitoNeg = -42 / 0; //Exibe -Infinity
-var infinitoNeg2 = 2 / -0; //Idem
+var infinito4 = -42 / 0; //Exibe -Infinity
+var infinito5 = 2 / -0; //Idem
 ```
 
+### NaN
 
+`NaN` (Not a Number) é um número que representa que não é um número. 
+
+Usualmente é resultado de uma operação aritmética em que ao menos um dos operandos não é um número.
+
+```js
+var naoNum1 = 21 * "dois"; //Exibe NaN.
+var naoNum2 = "quarenta" / "três"; //Exibe NaN.
+var naoNum3 = 58 - "sete"; //Exibe NaN.
+var naoNum4 = "cinco" + 50; //Exibe cinco50?!? Concatenação de string. Explicarei na próxima seção!
+```
+Uma característica um tanto estranha de `NaN` é que ele é o único valor que nunca é igual a si.
+
+```js
+var eNaoNum = NaN === NaN //Exibe false.
+```
 
 #### Sistemas Numéricos
 
@@ -108,12 +127,14 @@ var binNeg = -0B10000; //Exibe -16.
 Nenhum desses sistemas aceita `.` como separador da parte fracionária nem notação científica exponencial.
 
 
-#### Representação Decimal mas Nem Tanto
+#### Problemas em Números Fracionários
 
-O sistema decimal foi desenvolvido por cima do sistema binário, que é natural à linguagem dos computadores.
+Como os valores do tipo `number` são armazenados de forma binária e não há como converter de forma exata números fracionários, podemos encontrar inconsistências em resultados de operações matemáticas.
 
 ```js
+var diferente = 0.4 - 0.1 === 0.3; //Exibe false.
 
+var tresDecimos = 0.3.toFixed(20); //Método para exibir determinado número de casas decimais em string. Exibe "0.29999999999999998890".
 ```
 
 
