@@ -129,14 +129,13 @@ Nenhum desses sistemas aceita `.` como separador da parte fracionária nem nota�
 
 #### Problemas em Números Fracionários
 
-Como os valores do tipo `number` são armazenados de forma binária e não há como converter de forma exata números fracionários, podemos encontrar inconsistências em resultados de operações matemáticas.
+Como os valores do tipo `number` são armazenados de forma binária e não há como converter de forma exata os números decimais fracionários, podemos encontrar inconsistências em resultados de operações matemáticas.
 
 ```js
 var diferente = 0.4 - 0.1 === 0.3; //Exibe false.
 
-var tresDecimos = 0.3.toFixed(20); //Método para exibir determinado número de casas decimais em string. Exibe "0.29999999999999998890".
+var tresDecimos = 0.3.toFixed(20); //Exibe "0.29999999999999998890".
 ```
-
 
 #### Operações Aritméticas
 
