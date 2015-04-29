@@ -33,10 +33,12 @@ var inteiro2 = +42.00; //Exibe 42
 var inteiro3 = 42e-0; //Exibe 42
 var inteiro4 = -42;
 var inteiro5 = 42.; //Exibe 42
+var inteiro6 = 42
 
 var real1 = 29.35; 
 var real2 = .05; //Exibe 0.05
 var real3 = -.8; //Exibe -0.8
+var real4 = -0.090000 //Exibe -0.09
 
 var notacaoExp1 = 27e2; //O mesmo que 27 * (10 ^ 2). Exibe 2700
 var notacaoExp2 = 27E+2; //Idem.
@@ -55,15 +57,13 @@ Dos 64 bits: 1 bit para o sinal (positivo ou negativo), 11 bits para o expoente 
 
 Simplificando: podemos utilizar valores inteiros entre -9007199254740991 e 9007199254740991 (mais de 9 quadrilhões) o que nós dá a segurança de utilizar inteiros de até 15 dígitos. 
 
-No capítulo sobre o objeto Number você verá que há quatro propriedades que definem os valores mínimos e máximos para o tipo `number` (`Number.MAX_SAFE_INTEGER`,`Number.MIN_SAFE_INTEGER`, `Number.MAX_VALUE`, `Number.MIN_VALUE`).
+No capítulo sobre o objeto `Number` você verá que há quatro propriedades que definem os valores mínimos e máximos para o tipo `number` (`Number.MAX_SAFE_INTEGER`,`Number.MIN_SAFE_INTEGER`, `Number.MAX_VALUE`, `Number.MIN_VALUE`).
 
 Caso precise trabalhar com números maiores, pesquise por bibliotecas como [BigInteger.js](https://github.com/peterolson/BigInteger.js) ou [bignumber.js](https://github.com/MikeMcl/bignumber.js).
 
 #### Zero
 
 Há `+0` ou simplmesmente `0` bem como há `-0`. 
-
-O zero negativo não é maior nem menor que o zero *positivo*. 
 
 ```js
 var zero = 0 / -3 ; //Exibe -0.
@@ -98,7 +98,7 @@ var naoNum2 = "quarenta" / "três"; //Exibe NaN.
 var naoNum3 = 58 - "sete"; //Exibe NaN.
 var naoNum4 = "cinco" + 50; //Exibe cinco50?!? Concatenação de string. Explicarei na próxima seção!
 ```
-Uma característica um tanto estranha de `NaN` é que ele é o único valor que nunca é igual a si.
+Uma outra característica um tanto estranha de `NaN` é que ele é o único valor que nunca é igual a si.
 
 ```js
 var eNaoNum = NaN === NaN //Exibe false.
@@ -106,13 +106,13 @@ var eNaoNum = NaN === NaN //Exibe false.
 
 #### Sistemas Numéricos
 
-Além do decimal, que é o padrão, podemos utilizar o hexadecimal, o octal e o binário. 
+Além do decimal, que é o padrão, pode-se utilizar o hexadecimal, o octal e o binário. 
 
-Identificamos um número hexadecimal colocando `0x` ou `0X` à sua frente, no octal com `0o` ou `0O` e no binário `0b` ou `0B`. As letras entre `A` e `F`, no hexadecimal, podem ser maiúsculas ou não.
+Identifica-se um número hexadecimal colocando `0x` à sua frente, no octal `0o` e no binário `0b`. Essas letras podem ser maiúsculas, bem como as letras utilizadas nos valores hexadecimais.
 
-Para não ocasionar erros de leitura, evite utilizar `0O` para octais pois dependendo da fonte utilizada fica  difícil distinguir entre a letra e o número.
+Evite utilizar `0O` para octais pois dependendo da fonte utilizada no código-fonte torna-se difícil distinguir entre a letra `O` maiúscula e o número `0`.
 
-Podemos também identificar um octal colocando apenas um `0` à sua frente, porém essa sintaxe não será mais aceita no `strict mode` do ES6.
+É possível também identificar um octal colocando apenas um `0` à sua frente, porém seu uso é desaconselhado já que essa sintaxe não será mais aceita no `strict mode` do ES6.
 
 ```js
 var octal = 0o20; //Exibe 16.
@@ -124,12 +124,11 @@ var hexaNeg = -0X1a; //Exibe -16.
 var binNeg = -0B10000; //Exibe -16.
 ```
 
-Nenhum desses sistemas aceita `.` como separador da parte fracionária nem notação científica exponencial.
-
+Nenhum desses sistemas aceita números fracionários ou notação científica exponencial.
 
 #### Problemas em Números Fracionários
 
-Como os valores do tipo `number` são armazenados de forma binária e não há como converter de forma exata os números decimais fracionários, podemos encontrar inconsistências em resultados de operações matemáticas.
+Como os valores do tipo `number` são armazenados de forma binária e não há como converter de forma exata muitos dos números decimais fracionários, podemos encontrar inconsistências em resultados de operações matemáticas.
 
 ```js
 var diferente = 0.4 - 0.1 === 0.3; //Exibe false.
@@ -137,9 +136,33 @@ var diferente = 0.4 - 0.1 === 0.3; //Exibe false.
 var tresDecimos = 0.3.toFixed(20); //Exibe "0.29999999999999998890".
 ```
 
-#### Operações Aritméticas
+#### Operações Aritméticas Básicas
+
+É possível utilizar adição `+`, subtração `-`, divisão `/`, multiplicação `*` e resto de divisão `%`.
 
 ```js
 var soma = 5 + 37; //Exibe 42.
-var divisao = 45 / 3; //Exibe 15.
+var subtracao = 50 - 42; //Exibe 8.
+var divisao = 60 / 4; //Exibe 15.
+var multiplicao = 12 * 3; //Exibe 36.
+var resto = 5 % 2; //Exibe 1.
+```
+
+Serão cobertas operações aritméticas mais complexas no capítulo sobre o objeto `Math`.
+
+#### Precedência dos Operadores Aritméticos
+
+As expressões são avaliadas da esquerda para a direita levando em conta a precedência dos operadores para realizar as associações entre os operandos (números, nesse caso) e assim efetuar os cálculos.
+
+Precedência dos operadores:
+* `()`
+* `*`, `/` e `%`
+* `+` e `-`
+
+```js
+var expressao1 = 5 * 8 + 2; //Exibe 42.
+var expressao2 = 5 * (8 + 2); //Exibe 50.
+
+var expressao3 = 5 * (3 * 1 + 4); //Exibe 35.
+var expressao4 = 5 * (3 * (1 + 4)); //Exibe  75.
 ```
