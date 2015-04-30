@@ -21,9 +21,7 @@ Não se preocupe em decorar a sintaxe e os tipos agora. Conforme formos utilizan
 
 O tipo `number` representa número. 
 
-Os números podem ser reais; 
-
-Números reais tem sua parte fracionária separada por `.` ao invés do padrão ABTN `,`.
+Os números podem ser reais (a parte fracionária é separada por `.` ao invés do padrão ABTN `,`); 
 
 ```js
 29.35; 
@@ -72,7 +70,7 @@ Contudo o expoente pode ser negativo.
 
 O tipo `number` segue o padrão IEEE 754 que determina representações de números binários de ponto flutuante de precisão dupla (64 bits). No entanto mesmo os números inteiros são armazenados dessa forma.
 
-**Nota:** Foge do escopo do livro explicar como funciona o padrão IEEE 754 e como valores `number` são [convertidos](http://www.h-schmidt.net/FloatConverter/IEEE754.html) e armazenados. Contudo, esteja ciente que é um cálculo complexo e que não prejudica o aprendizado de JS.
+**Nota:** Foge do escopo do livro explicar como funciona o padrão IEEE 754 e como valores `number` são [convertidos](http://www.h-schmidt.net/FloatConverter/IEEE754.html) e armazenados. 
 
 É possível utilizar de forma segura valores inteiros entre `-9007199254740991` e `9007199254740991`;
 
