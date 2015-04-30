@@ -1,5 +1,5 @@
 # Um Pouco de JavaScript
-# Capítulo 2: Tipos de Valores e Variáveis
+# Capítulo 2: Tipos de Valores
 
 ## Tipos de Valores
 
@@ -61,49 +61,6 @@ No capítulo sobre o objeto `Number` você verá que há quatro propriedades que
 
 Caso precise trabalhar com números maiores, pesquise por bibliotecas como [BigInteger.js](https://github.com/peterolson/BigInteger.js) ou [bignumber.js](https://github.com/MikeMcl/bignumber.js).
 
-#### Zero
-
-Há `+0` ou simplmesmente `0` bem como há `-0`. 
-
-```js
-var zero = 0 / -3 ; //Exibe -0.
-
-var eZero = 0 === -0; //Exibe true.
-```
-
-#### Infinity
-
-`+Infinity` e `-Infinity` representam números que ultrapassam os limites de representação. 
-
-Qualquer operação aritmética que contenha `Infinity` resultará em `Infinity`. Exceto quando elevado à pontencia de `0`, caso em que resultará em 1.
-
-```js
-var infinito1 = -Infinity * -2; //Exibe Infinity
-var infinito2 = 42 / 0; //Exibe Infinity
-var infinito3 = Math.pow(Infinity, 0); //Infinity elevado a 0. Exibe 1
-
-var infinito4 = -42 / 0; //Exibe -Infinity
-var infinito5 = 2 / -0; //Idem
-```
-
-### NaN
-
-`NaN` (Not a Number) é um número que representa que não é um número. 
-
-Usualmente é resultado de uma operação aritmética em que ao menos um dos operandos não é um número.
-
-```js
-var naoNum1 = 21 * "dois"; //Exibe NaN.
-var naoNum2 = "quarenta" / "três"; //Exibe NaN.
-var naoNum3 = 58 - "sete"; //Exibe NaN.
-var naoNum4 = "cinco" + 50; //Exibe cinco50?!? Concatenação de string. Explicarei na próxima seção!
-```
-Uma outra característica um tanto estranha de `NaN` é que ele é o único valor que nunca é igual a si.
-
-```js
-var eNaoNum = NaN === NaN //Exibe false.
-```
-
 #### Sistemas Numéricos
 
 Além do decimal, que é o padrão, pode-se utilizar o hexadecimal, o octal e o binário. 
@@ -141,28 +98,139 @@ var tresDecimos = 0.3.toFixed(20); //Exibe "0.29999999999999998890".
 É possível utilizar adição `+`, subtração `-`, divisão `/`, multiplicação `*` e resto de divisão `%`.
 
 ```js
-var soma = 5 + 37; //Exibe 42.
-var subtracao = 50 - 42; //Exibe 8.
-var divisao = 60 / 4; //Exibe 15.
-var multiplicao = 12 * 3; //Exibe 36.
-var resto = 5 % 2; //Exibe 1.
+5 + 37;   //Exibe 42.
+50 - 42;  //Exibe 8.
+60 / 4;   //Exibe 15.
+12 * 3;   //Exibe 36.
+5 % 2;    //Exibe 1.
 ```
 
-Serão cobertas operações aritméticas mais complexas no capítulo sobre o objeto `Math`.
+Operações aritméticas mais complexas serão cobertas no capítulo sobre o objeto `Math`.
 
 #### Precedência dos Operadores Aritméticos
 
-As expressões são avaliadas da esquerda para a direita levando em conta a precedência dos operadores para realizar as associações entre os operandos (números, nesse caso) e assim efetuar os cálculos.
+As expressões são avaliadas da esquerda para a direita levando em conta a precedência dos operadores para realizar as associações entre os operandos e assim efetuar os cálculos.
 
 Precedência dos operadores:
-* `()`
 * `*`, `/` e `%`
 * `+` e `-`
 
-```js
-var expressao1 = 5 * 8 + 2; //Exibe 42.
-var expressao2 = 5 * (8 + 2); //Exibe 50.
+Operações com operadores de mesmo nível de precedência ocorrem pela ordem de surgimento. 
 
-var expressao3 = 5 * (3 * 1 + 4); //Exibe 35.
-var expressao4 = 5 * (3 * (1 + 4)); //Exibe  75.
+```js
+10 / 2 % 3;   //10 / 2 == 5 então 5 % 3 == 2. Exibe 2 
+```
+
+A precedência dos operadores pode ser contornada com o uso de `()`.
+
+```js
+10 / (2 % 3);   //2 % 3 == 2 então 10 / 2 == 5. Exibe 5.
+```
+
+#### Zero Negativo
+
+Há `-0` em JS.
+
+```js
+0 / -3 ;  //Exibe -0.
+```
+
+Tem o mesmo valor que o `+0`, diferindo apenas em sua polaridade.
+
+```js
+0 === -0;   //Exibe true.
+```
+
+#### Infinity
+
+`Infinity` (ou `+Infinity`)  é um número que representa o infinito positivo, assim como `-Infinity` representa o infinito negativo.
+
+```js
+typeof Infinity;  //Exibe "number".
+```
+
+Números divididos por `0` resultam em `Infinity` ou `-Infinity`, dependendo dos sinais dos operandos.
+
+```js
+-42 / -0;   //Exibe Infinity
+42 / -0;    //Exibe -Infinity
+```
+
+Números maiores que 1.797693134862315E+308 ou menores que -1.797693134862315E+308 são convertidos em `Infinity` e `-Infinity` respectivamente.
+
+```js
+-1.797693134862315E+308 * 1.1;   //Exibe -Infinity
+```
+
+Operações aritméticas que contenham `Infinity` resultarão em `Infinity`. 
+
+```js
+-Infinity / -2;   //Exibe Infinity.
+1 - Infinity;     //Exibe -Infinity.
+```
+
+Exceto quando elevado à pontência de `0`, caso em que resultará 1.
+
+```js
+Math.pow(-Infinity, 0); //-Infinity elevado a 0. Exibe 1
+```
+
+Ou quando divide `0`.
+
+```js
+0 / -Infinity;  //Exibe -0.
+```
+
+Ou quando multiplicado por `0`.
+
+```js
+Infinity * 0;  //Exibe NaN.
+```
+
+Ou quando houver um `NaN`.
+
+```js
+NaN + -Infinity; //Exibe NaN.
+```
+
+Ou ainda quando um `Infinity` for dividido por outro `Infinity`.
+
+```js
+Infinity / -Infinity; //Exibe NaN
+```
+
+### NaN
+
+`NaN` (Not a Number) é uma representação de um número inválido. 
+
+Ainda assim é um número.
+
+```js
+typeof NaN;   //Exibe "number"
+```
+
+Usualmente é resultado de uma operação aritmética em que um dos operandos não pode ser transformado em um número.
+
+```js
+21 * "dois";        //Exibe NaN.
+"quarenta" / true;  //Exibe NaN.
+"cinco" + 50;       //Exibe cinco50?!? Concatenação de string!
+```
+
+Ou quando `0` é dividido por `0`.
+
+```js
+0 / -0;  //Exibe NaN.
+```
+
+Operações aritméticas que contenham `NaN` sempre resultarão em `NaN`.
+
+```js
+4 + NaN * 2;  //Exibe NaN.
+```
+
+E é o único valor em JS que nunca é igual a si.
+
+```js
+NaN === NaN;   //Exibe false.
 ```
