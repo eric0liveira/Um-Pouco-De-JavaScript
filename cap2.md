@@ -23,7 +23,7 @@ O tipo `number` representa um número.
 
 Números que começam com `-` são negativos, e todos os outros positivos, começando com `+` ou não.
 
-Os números podem ser real; 
+Os números podem ser reais; 
 
 ```js
 29.35; 
@@ -41,7 +41,7 @@ Inteiros;
 42.;    //Exibe 42.
 ```
 
-Ou expressos em notação exponencial científica em que o expoente é indicado após `e` ou `E`. 
+Ou expressos em notação exponencial científica, caso em que o expoente é indicado após `e` ou `E`. 
 
 ```js
 27e2;     //O mesmo que 27 * (10 ^ 2). Exibe 2700.
