@@ -19,33 +19,56 @@ Não se preocupe em decorar a sintaxe e os tipos agora. Conforme formos utilizan
 
 ### Number
 
-O tipo `number` representa um número. Esse número pode ser real, inteiro ou expresso em notação exponencial científica.
+O tipo `number` representa um número. 
 
-Os números que começam com `-` são negativos, e todos os outros positivos, começando com `+` ou não.
+Números que começam com `-` são negativos, e todos os outros positivos, começando com `+` ou não.
 
-Números com notação exponencial têm o expoente indicado após `e` ou `E`. Esses expoentes podem ser positivos ou negativos.
-
-Os números reais tem sua parte fracionária dividia por `.` ao invés do padrão ABTN `,`.
+Os números podem ser real; 
 
 ```js
-var inteiro1 = 42;
-var inteiro2 = +42.00; //Exibe 42
-var inteiro3 = 42e-0; //Exibe 42
-var inteiro4 = -42;
-var inteiro5 = 42.; //Exibe 42
-var inteiro6 = 42
-
-var real1 = 29.35; 
-var real2 = .05; //Exibe 0.05
-var real3 = -.8; //Exibe -0.8
-var real4 = -0.090000 //Exibe -0.09
-
-var notacaoExp1 = 27e2; //O mesmo que 27 * (10 ^ 2). Exibe 2700
-var notacaoExp2 = 27E+2; //Idem.
-var notacaoExp3 = 0.27E+4; //Idem.
-var notacaoExp4 = 27e-2; //O mesmo que 27 * (10 ^ -2). Exibe 0.27
-var NotacaoExp5 = -27e-2 //Exibe -0.27
+29.35; 
+.05;      //Exibe 0.05.
+-.8;      //Exibe -0.8.
+-0.090000 //Exibe -0.09.
 ```
+
+Inteiros;
+```js
+42;
++42.00; //Exibe 42.
+42e-0;  //Exibe 42.
+-42;
+42.;    //Exibe 42.
+```
+
+Ou expressos em notação exponencial científica em que o expoente é indicado após `e` ou `E`. 
+
+```js
+27e2;     //O mesmo que 27 * (10 ^ 2). Exibe 2700.
+-27E2;    //Exibe -2700.
+```
+
+Além de número inteiro, a mantissa pode ser um número real.
+
+```js
+0.27e4;  //Exibe 2700.
+-0.27e4;  //Exibe -2700.
+```
+
+O expoente pode ser negativo.
+
+```js
+27e-2;    //O mesmo que 27 * (10 ^ -2). Exibe 0.27.
+-27e-2    //Exibe -0.27.
+```
+
+Porém não pode ser número real.
+
+```js
+27e0.2;    //Exibe SyntaxError.
+```
+
+Os números reais tem sua parte fracionária dividia por `.` ao invés do padrão ABTN `,`.
 
 #### Precisão
 
@@ -61,28 +84,6 @@ No capítulo sobre o objeto `Number` você verá que há quatro propriedades que
 
 Caso precise trabalhar com números maiores, pesquise por bibliotecas como [BigInteger.js](https://github.com/peterolson/BigInteger.js) ou [bignumber.js](https://github.com/MikeMcl/bignumber.js).
 
-#### Sistemas Numéricos
-
-Além do decimal, que é o padrão, pode-se utilizar o hexadecimal, o octal e o binário. 
-
-Identifica-se um número hexadecimal colocando `0x` à sua frente, no octal `0o` e no binário `0b`. Essas letras podem ser maiúsculas, bem como as letras utilizadas nos valores hexadecimais.
-
-Evite utilizar `0O` para octais pois dependendo da fonte utilizada no código-fonte torna-se difícil distinguir entre a letra `O` maiúscula e o número `0`.
-
-É possível também identificar um octal colocando apenas um `0` à sua frente, porém seu uso é desaconselhado já que essa sintaxe não será mais aceita no `strict mode` do ES6.
-
-```js
-var octal = 0o20; //Exibe 16.
-var hexa = 0x1A; //Exibe 16.
-var bin = 0b10000; //Exibe 16.
-
-var octalNeg = -0O20; //Exibe -16.
-var hexaNeg = -0X1a; //Exibe -16.
-var binNeg = -0B10000; //Exibe -16.
-```
-
-Nenhum desses sistemas aceita números fracionários ou notação científica exponencial.
-
 #### Problemas em Números Fracionários
 
 Como os valores do tipo `number` são armazenados de forma binária e não há como converter de forma exata muitos dos números decimais fracionários, podemos encontrar inconsistências em resultados de operações matemáticas.
@@ -91,6 +92,83 @@ Como os valores do tipo `number` são armazenados de forma binária e não há c
 var diferente = 0.4 - 0.1 === 0.3; //Exibe false.
 
 var tresDecimos = 0.3.toFixed(20); //Exibe "0.29999999999999998890".
+```
+
+#### Sistemas Numéricos
+
+Além do decimal, que é o padrão, há o hexadecimal, o octal e o binário. 
+
+Hexadecimais são indicados com `0x` ou `0X` à sua frente. 
+
+```js
+0x1a; //Exibe 16.
+-0xff; //Exibe -255.
+```
+
+As letras que representam números (`A` - `F`) podem ser maiúsculas e/ou minúsculas.
+
+```js
+0XaA; //Exibe 170.
+```
+
+Se colocada alguma letra inválida será lançado um `SyntaxError`.
+
+```js
+0xg; //Exibe SyntaxError.
+```
+
+Octais são identificados com `0o` ou `0O`.
+
+```js
+0o20;   //Exibe 16.
+-0o20;  //Exibe -16.
+```
+
+Evite usar `0O` por ser difícil a distinção dos caracteres em determinadas fontes.
+
+```js
+-0O01; //Exibe -1.
+```
+
+Octais podem ser identificados com apenas `0` à sua frente, porém seu uso é desaconselhado já que essa sintaxe não é aceita no `strict mode` do ES6.
+
+```js
+-010; //Exibe SyntaxError.
+```
+
+E também porque `08` e `09` são identificados como decimais.
+
+```js
+-09; //Exibe 9.
+```
+
+Binários são identificados com `0B` ou `0b`. 
+
+```js
+0b10000; //Exibe 16.
+-0B10000; //Exibe -16.
+```
+
+Qualquer valor diferente de `0` e `1` lançará um `SyntaxError`.
+
+```js
+-0b2; //Exibe SyntaxError.
+```
+
+Nenhum desses sistemas aceita números fracionários.
+
+```js
+-0b100.0; //Exibe SyntaxError.
+0x1d.0;   //Exibe SyntaxError.
+0o5.0;   //Exibe SyntaxError.
+```
+
+Nem notação científica exponencial.
+
+```js
+-0b1e0; //Exibe SyntaxError.
+0x1de0;   //Exibe SyntaxError.
+0o5e0;   //Exibe SyntaxError.
 ```
 
 #### Operações Aritméticas Básicas
@@ -126,6 +204,13 @@ A precedência dos operadores pode ser contornada com o uso de `()`.
 ```js
 10 / (2 % 3);   //2 % 3 == 2 então 10 / 2 == 5. Exibe 5.
 ```
+
+Os `()` internos precedem os externos.
+
+```js
+((13 + 3) / 4) % 3 // 13 + 3 == 16 então 16 / 4 == 4 então 4 % 3 == 1. Exibe 1 
+```
+
 
 #### Zero Negativo
 
