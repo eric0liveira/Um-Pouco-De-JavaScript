@@ -19,11 +19,11 @@ Não se preocupe em decorar a sintaxe e os tipos agora. Conforme formos utilizan
 
 ### Number
 
-O tipo `number` representa um número. 
-
-Números que começam com `-` são negativos, e todos os outros positivos, começando com `+` ou não.
+O tipo `number` representa número. 
 
 Os números podem ser reais; 
+
+Números reais tem sua parte fracionária separada por `.` ao invés do padrão ABTN `,`.
 
 ```js
 29.35; 
@@ -33,6 +33,7 @@ Os números podem ser reais;
 ```
 
 Inteiros;
+
 ```js
 42;
 +42.00; //Exibe 42.
@@ -41,46 +42,76 @@ Inteiros;
 42.;    //Exibe 42.
 ```
 
-Ou expressos em notação exponencial científica, caso em que o expoente é indicado após `e` ou `E`. 
+Ou expressos em notação científica, caso em que o expoente é indicado após `e` ou `E`. 
 
 ```js
 27e2;     //O mesmo que 27 * (10 ^ 2). Exibe 2700.
 -27E2;    //Exibe -2700.
 ```
 
-Além de número inteiro, a mantissa pode ser um número real.
+Além de número inteiro, a mantissa pode ser um número real;
 
 ```js
 0.27e4;  //Exibe 2700.
 -0.27e4;  //Exibe -2700.
 ```
 
-O expoente pode ser negativo.
-
-```js
-27e-2;    //O mesmo que 27 * (10 ^ -2). Exibe 0.27.
--27e-2    //Exibe -0.27.
-```
-
-Porém não pode ser número real.
+Já o expoente não;
 
 ```js
 27e0.2;    //Exibe SyntaxError.
 ```
 
-Os números reais tem sua parte fracionária dividia por `.` ao invés do padrão ABTN `,`.
+Contudo o expoente pode ser negativo.
+
+```js
+27e-2;    //O mesmo que 27 * (10 ^ -2). Exibe 0.27.
+```
 
 #### Precisão
 
 O tipo `number` segue o padrão IEEE 754 que determina representações de números binários de ponto flutuante de precisão dupla (64 bits). No entanto mesmo os números inteiros são armazenados dessa forma.
 
-Dos 64 bits: 1 bit para o sinal (positivo ou negativo), 11 bits para o expoente e 52 bits são utilizados para a mantissa.
-
 **Nota:** Foge do escopo do livro explicar como funciona o padrão IEEE 754 e como valores `number` são [convertidos](http://www.h-schmidt.net/FloatConverter/IEEE754.html) e armazenados. Contudo, esteja ciente que é um cálculo complexo e que não prejudica o aprendizado de JS.
 
-Simplificando: podemos utilizar valores inteiros entre -9007199254740991 e 9007199254740991 (mais de 9 quadrilhões) o que nós dá a segurança de utilizar inteiros de até 15 dígitos. 
+É possível utilizar de forma segura valores inteiros entre `-9007199254740991` e `9007199254740991`;
 
-No capítulo sobre o objeto `Number` você verá que há quatro propriedades que definem os valores mínimos e máximos para o tipo `number` (`Number.MAX_SAFE_INTEGER`,`Number.MIN_SAFE_INTEGER`, `Number.MAX_VALUE`, `Number.MIN_VALUE`).
+```js
+-9007199254740991;  //Number.MIN_SAFE_INTEGER
+9007199254740991;   //Number.MAX_SAFE_INTEGER
+```
+
+Se esses valores forem ultrapassados, inconsistências podem ocorrer.
+
+```js
+(-9007199254740991 - 1) === (-9007199254740991 - 2); //Exibe true.
+```
+
+Em notação científica os valores máximos são `-1.7976931348623157e+308` e `1.7976931348623157e+308`;
+
+```js
+-1.7976931348623157e+308; //-Number.MAX_VALUE
+1.7976931348623157e+308;  //Number.MAX_VALUE
+```
+
+E os mínimos `-5e-324` e `5e-324`.
+
+```js
+-5e-324; //-Number.MIN_VALUE
+5e-324;  //Number.MIN_VALUE
+```
+
+Caso os valores máximos sejam ultrapassados, resultarão em `Infinity`;
+
+```js
+-1.7976931348623157e+308 * 1.1; //Exibe -Infinity.
+```
+
+E os mínimos em `0`.
+
+```js
+-5e-324 * 0.1; //Exibe -0. 
+```
 
 Caso precise trabalhar com números maiores, pesquise por bibliotecas como [BigInteger.js](https://github.com/peterolson/BigInteger.js) ou [bignumber.js](https://github.com/MikeMcl/bignumber.js).
 
@@ -89,9 +120,9 @@ Caso precise trabalhar com números maiores, pesquise por bibliotecas como [BigI
 Como os valores do tipo `number` são armazenados de forma binária e não há como converter de forma exata muitos dos números decimais fracionários, podemos encontrar inconsistências em resultados de operações matemáticas.
 
 ```js
-var diferente = 0.4 - 0.1 === 0.3; //Exibe false.
+0.4 - 0.1 === 0.3; //Exibe false.
 
-var tresDecimos = 0.3.toFixed(20); //Exibe "0.29999999999999998890".
+0.3.toFixed(20); //Exibe "0.29999999999999998890".
 ```
 
 #### Sistemas Numéricos
