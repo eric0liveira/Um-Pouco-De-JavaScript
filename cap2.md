@@ -17,9 +17,33 @@ var nulo = null;
 
 Não se preocupe em decorar a sintaxe e os tipos agora. Conforme formos utilizando-os sua assimilação fluirá.
 
-### Number
+### typeof
+
+O operador `typeof` devolve uma string que identifica o tipo do operando. 
+
+```js
+typeof 42;                            //Exibe "number".
+typeof "olá";                         //Exibe "string".
+typeof true;                          //Exibe "boolean".
+typeof {nome: 'Caio', idade: 26};     //Exibe "object".
+typeof Symbol("identificador");       //Exibe "symbol".
+typeof undefined;                     //Exibe "undefined".
+typeof null;                          //Exibe "object"?!? 
+```
+
+Há também o tipo `function` que pode ser encarado como um subtipo de `object`.
+
+```js
+typeof function () {};  //Exibe "function". 
+```
+
+### number
 
 O tipo `number` representa número. 
+
+```js
+typeof 50;  //Exibe "number". 
+```
 
 Os números podem ser reais (a parte fracionária é separada por `.` ao invés do padrão ABTN `,`); 
 
@@ -347,4 +371,37 @@ E é o único valor em JS que nunca é igual a si.
 
 ```js
 NaN === NaN;   //Exibe false.
+```
+
+### string
+
+### boolean
+
+O tipo `boolean` representa os valores lógicos `false` e `true`.
+
+```js
+true;
+false;
+```
+
+### object
+
+### symbol
+
+### undefined
+
+### null
+
+O tipo `null` representa nulo.
+
+Bizarramente `null` é um objeto.
+
+```js
+typeof null;   //Exibe "object".
+```
+
+Comumente é utilizado para explicitar que a nulificação é proposital.
+
+```js
+var a = num === 'Infinity' ?  null : num; //Se num é igual a Infinity, então atribui null senão o próprio num.
 ```
