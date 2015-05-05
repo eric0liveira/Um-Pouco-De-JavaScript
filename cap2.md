@@ -187,10 +187,10 @@ Octais podem ser identificados com apenas `0` à sua frente, porém seu uso é d
 -010; //Exibe SyntaxError.
 ```
 
-E também porque `08` e `09` são identificados como decimais.
+E também porque `08` e `09`, ou números iniciados com eles, são identificados como decimais.
 
 ```js
--09; //Exibe 9.
+-090; //Exibe 90.
 ```
 
 Binários são identificados com `0B` ou `0b`. 
@@ -373,6 +373,26 @@ NaN === NaN;   //Exibe false.
 
 ## string
 
+O tipo `string` representa palavras.
+
+```js
+typeof "exemplo";   //Exibe "exemplo".
+```
+
+Para identificar-se uma string é necessário o uso de aspas simples ou duplas.
+
+```js
+"exemplo";   //Exibe "exemplo".
+'exemplo';   //Exibe "exemplo".
+```
+
+### Codificação de Caracteres
+
+### Concatenação
+
+###
+
+
 ## boolean
 
 O tipo `boolean` representa os valores lógicos `false` e `true`.
@@ -383,6 +403,12 @@ false;
 ```
 
 ## object
+
+O tipo `object` representa objeto. Objeto é uma estrutura de dados com pares nome-valor.
+
+```js
+typeof {nome: 'Caio'};   //Exibe "object".
+```
 
 ## symbol
 
