@@ -1,8 +1,6 @@
 # Um Pouco de JavaScript
 # Capítulo 2: Tipos de Valores
 
-## Tipos de Valores
-
 Há 7 tipos: `number`, `string`, `boolean`, `object`, `symbol`, `undefined` e `null`.
 
 ```js
@@ -17,7 +15,7 @@ var nulo = null;
 
 Não se preocupe em decorar a sintaxe e os tipos agora. Conforme formos utilizando-os sua assimilação fluirá.
 
-### typeof
+## typeof
 
 O operador `typeof` devolve uma string que identifica o tipo do operando. 
 
@@ -37,7 +35,7 @@ Há também o tipo `function` que pode ser encarado como um subtipo de `object`.
 typeof function () {};  //Exibe "function". 
 ```
 
-### number
+## number
 
 O tipo `number` representa número. 
 
@@ -90,7 +88,7 @@ Contudo o expoente pode ser negativo.
 27e-2;    //O mesmo que 27 * (10 ^ -2). Exibe 0.27.
 ```
 
-#### Precisão
+### Precisão
 
 O tipo `number` segue o padrão IEEE 754 que determina representações de números binários de ponto flutuante de precisão dupla (64 bits). No entanto mesmo os números inteiros são armazenados dessa forma.
 
@@ -137,7 +135,7 @@ E os mínimos em `0`.
 
 Caso precise trabalhar com números maiores, pesquise por bibliotecas como [BigInteger.js](https://github.com/peterolson/BigInteger.js) ou [bignumber.js](https://github.com/MikeMcl/bignumber.js).
 
-#### Problemas em Números Fracionários
+### Problemas em Números Fracionários
 
 Como os valores do tipo `number` são armazenados de forma binária e não há como converter de forma exata muitos dos números decimais fracionários, podemos encontrar inconsistências em resultados de operações matemáticas.
 
@@ -147,7 +145,7 @@ Como os valores do tipo `number` são armazenados de forma binária e não há c
 0.3.toFixed(20); //Exibe "0.29999999999999998890".
 ```
 
-#### Sistemas Numéricos
+### Sistemas Numéricos
 
 Além do decimal, que é o padrão, há o hexadecimal, o octal e o binário. 
 
@@ -224,7 +222,7 @@ Nem notação científica exponencial.
 0o5e0;   //Exibe SyntaxError.
 ```
 
-#### Operações Aritméticas Básicas
+### Operações Aritméticas Básicas
 
 É possível utilizar adição `+`, subtração `-`, divisão `/`, multiplicação `*` e resto de divisão `%`.
 
@@ -238,7 +236,7 @@ Nem notação científica exponencial.
 
 Operações aritméticas mais complexas serão cobertas no capítulo sobre o objeto `Math`.
 
-#### Precedência dos Operadores Aritméticos
+### Precedência dos Operadores Aritméticos
 
 As expressões são avaliadas da esquerda para a direita levando em conta a precedência dos operadores para realizar as associações entre os operandos e assim efetuar os cálculos.
 
@@ -265,7 +263,7 @@ Os `()` internos precedem os externos.
 ```
 
 
-#### Zero Negativo
+### Zero Negativo
 
 Há `-0` em JS.
 
@@ -279,7 +277,7 @@ Tem o mesmo valor que o `+0`, diferindo apenas em sua polaridade.
 0 === -0;   //Exibe true.
 ```
 
-#### Infinity
+### Infinity
 
 `Infinity` (ou `+Infinity`)  é um número que representa o infinito positivo, assim como `-Infinity` representa o infinito negativo.
 
@@ -373,9 +371,9 @@ E é o único valor em JS que nunca é igual a si.
 NaN === NaN;   //Exibe false.
 ```
 
-### string
+## string
 
-### boolean
+## boolean
 
 O tipo `boolean` representa os valores lógicos `false` e `true`.
 
@@ -384,13 +382,13 @@ true;
 false;
 ```
 
-### object
+## object
 
-### symbol
+## symbol
 
-### undefined
+## undefined
 
-### null
+## null
 
 O tipo `null` representa nulo.
 
