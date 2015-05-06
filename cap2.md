@@ -379,16 +379,27 @@ O tipo `string` representa palavras.
 typeof "exemplo";   //Exibe "exemplo".
 ```
 
-Para identificar-se uma string é necessário o uso de aspas simples ou duplas.
+Para identificar-se uma string é necessário o uso de aspas simples ou duplas;
 
 ```js
 "exemplo";   //Exibe "exemplo".
 'exemplo';   //Exibe "exemplo".
 ```
 
-### Codificação de Caracteres
+Apenas as aspas mais externas correspondentes são consideradas identificadores de `string`.
+
+```js
+"É um espelho d'água.";   //Exibe "É um espelho d'água.".
+```
 
 ### Concatenação
+
+
+### Caracteres de Escape
+
+### Codificação de Caracteres
+
+
 
 ###
 
