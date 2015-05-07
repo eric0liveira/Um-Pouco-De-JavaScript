@@ -376,23 +376,35 @@ NaN === NaN;   //Exibe false.
 O tipo `string` representa palavras.
 
 ```js
-typeof "exemplo";   //Exibe "exemplo".
+typeof "exemplo";   //Exibe "string".
 ```
 
-Para identificar-se uma string é necessário o uso de aspas simples ou duplas;
+Para identificar-se uma string é necessário o uso de aspas simples ou duplas nas extremidades;
 
 ```js
 "exemplo";   //Exibe "exemplo".
 'exemplo';   //Exibe "exemplo".
 ```
 
-Apenas as aspas mais externas correspondentes são consideradas identificadores de `string`.
+No entando, as aspas devem ser correpondentes.
 
 ```js
-"É um espelho d'água.";   //Exibe "É um espelho d'água.".
+'exemplo";   //Exibe Syntax Error.
+```
+
+Caso queira incluir aspas simples ou duplas na `string`, basta intercalar as aspas.
+
+```js
+"É um espelho d'água!";                     //Exibe "É um espelho d'água!".
+'"Falar é fácil. Mostre-me o código."';     //Exibe ""Falar é fácil. Mostre-me o código!"".
 ```
 
 ### Concatenação
+
+Concatenar é a junção de duas ou mais `strings` em uma nova `string`.
+```js
+""; //Exibe.
+```
 
 
 ### Caracteres de Escape
